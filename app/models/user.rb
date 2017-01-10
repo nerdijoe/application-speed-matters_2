@@ -16,14 +16,18 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   def self.by_total_points
-    joins(:points).group('users.id').order('SUM(points.value) DESC')
+    # joins(:points).group('users.id').order('SUM(points.value) DESC')
+    UserPoint.all
   end
 
-  def total_points
-    self.points.sum(:value)
-  end
+  # def total_points
+  #   # self.points.sum(:value)
+  #   self.total_points
+  # end
 
   def full_name
     "#{first_name} #{last_name}"
   end
+
+
 end
